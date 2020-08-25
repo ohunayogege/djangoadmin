@@ -1,0 +1,113 @@
+{% extends 'app.html' %}
+{% block title %}Registered users in last month | Django Admin Dashboard{% endblock %}
+{% block body %}
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-flex align-items-center justify-content-between">
+                        <h4 class="mb-0 font-size-18">Registered users in last month</h4>
+
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item active">Registered users in last month</li>
+                            </ol>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>     
+            <!-- end page title -->
+
+            <div class="row">
+                {% if users %}
+                {% for user in reg_user_last_month %}
+                <div class="col-xl-3 col-sm-6">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            {% if user.photo %}
+                            <div class="mb-4">
+                                <img class="rounded-circle avatar-sm" src="{{ user.photo.url }}" alt="">
+                            </div>
+                            {% else %}
+                            <div class="avatar-sm mx-auto mb-4">
+                                <span class="avatar-title rounded-circle bg-soft-primary text-primary font-size-16">
+                                    O
+                                </span>
+                            </div>
+                            {% endif %}
+                            <h5 class="font-size-15"><a href="{% url 'profile' user.username %}" class="text-dark">{{ user.first_name }} {{ user.last_name }}</a></h5>
+                            <p class="text-muted">{{ user.username }}</p>
+                        </div>
+                        <div class="card-footer bg-transparent border-top">
+                            <div class="contact-links d-flex font-size-20">
+                                <div class="flex-fill">
+                                    <button type="button" class="btn btn-block waves-effect waves-light" data-toggle="modal" data-target="#{{ user.username }}"><i class="bx bx-mail-send"></i>
+                                    </button>
+                                </div>
+                                <div class="flex-fill">
+                                    <a class="btn waves-effect waves-light" href="{% url 'profile' user.username %}" data-toggle="tooltip" data-placement="top" title="Profile"><i class="bx bx-user-circle"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="{{ user.username }}" tabindex="-1" role="dialog" aria-labelledby="composemodalTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="composemodalTitle">New Message</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" value="{{ user.email }}" placeholder="To" readonly="readonly">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Subject">
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="summernote">
+                                            <h6>Your Message Here...</h6>
+
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-primary">Send <i class="fab fa-telegram-plane ml-1"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <p>No User yet</p>
+                {% endif %}
+            </div>
+
+            
+
+        </div> <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+
+    
+    {% include 'footer.html' %}
+</div>
+<!-- end main content-->
+{% endblock %}

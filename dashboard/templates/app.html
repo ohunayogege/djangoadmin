@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>{% block title %}Dashboard - Responsive Bootstrap 4 Admin Dashboard{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="/static/images/favicon.ico">
+
+        <!-- Summernote css -->
+        <link href="/static/libs/summernote/summernote-bs4.min.css" rel="stylesheet" type="text/css" />
+        <!-- Bootstrap Css -->
+        <link href="/static/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="/static/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="/static/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+
+    </head>
+
+    <body data-sidebar="dark">
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+            <header id="page-topbar">
+                <div class="navbar-header">
+                    <div class="d-flex">
+                        <!-- LOGO -->
+                        <div class="navbar-brand-box">
+                            <a href="index-2.html" class="logo logo-dark">
+                                <span class="logo-sm">
+                                    <img src="/static/images/logo.svg" alt="" height="22">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="/static/images/logo-dark.png" alt="" height="17">
+                                </span>
+                            </a>
+
+                            <a href="index-2.html" class="logo logo-light">
+                                <span class="logo-sm">
+                                    <img src="/static/images/logo-light.svg" alt="" height="22">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="/static/images/logo-light.png" alt="" height="19">
+                                </span>
+                            </a>
+                        </div>
+
+                        <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
+                            <i class="fa fa-fw fa-bars"></i>
+                        </button>
+
+                        
+                    </div>
+
+                    <div class="d-flex">
+
+
+                        <div class="dropdown d-none d-lg-inline-block ml-1">
+                            <button type="button" class="btn header-item noti-icon waves-effect"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bx bx-customize"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                                <div class="px-lg-2">
+                                    <div class="row no-gutters">
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="/static/images/brands/github.png" alt="Github">
+                                                <span>GitHub</span>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="/static/images/brands/bitbucket.png" alt="bitbucket">
+                                                <span>Bitbucket</span>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="/static/images/brands/dribbble.png" alt="dribbble">
+                                                <span>Dribbble</span>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row no-gutters">
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="/static/images/brands/dropbox.png" alt="dropbox">
+                                                <span>Dropbox</span>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="/static/images/brands/mail_chimp.png" alt="mail_chimp">
+                                                <span>Mail Chimp</span>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="/static/images/brands/slack.png" alt="slack">
+                                                <span>Slack</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dropdown d-none d-lg-inline-block ml-1">
+                            <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
+                                <i class="bx bx-fullscreen"></i>
+                            </button>
+                        </div>
+
+                        
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="rounded-circle header-profile-user" src="{{ user.photo.url}}"
+                                    alt="Header Avatar">
+                                <span class="d-none d-xl-inline-block ml-1">{{ user.first_name.capitalize }}</span>
+                                <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <!-- item-->
+                                <a class="dropdown-item" href="{% url 'profile' user.username %}"><i class="bx bx-user font-size-16 align-middle mr-1"></i> Profile</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-danger" href="{% url 'logout' %}"><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout</a>
+                            </div>
+                        </div>
+
+            
+                    </div>
+                </div>
+            </header>
+            {% include 'leftbar.html' %}
+            {% block body %}
+
+            {% endblock %}
+        </div>
+
+        <!-- JAVASCRIPT -->
+        <script src="/static/libs/jquery/jquery.min.js"></script>
+        <script src="/static/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/static/libs/metismenu/metisMenu.min.js"></script>
+        <script src="/static/libs/simplebar/simplebar.min.js"></script>
+        <script src="/static/libs/node-waves/waves.min.js"></script>
+
+        <!-- apexcharts -->
+        <script src="/static/libs/apexcharts/apexcharts.min.js"></script>
+
+        <script src="/static/js/pages/dashboard.init.js"></script>
+        <!-- Summernote js -->
+        <script src="/static/libs/summernote/summernote-bs4.min.js"></script>
+
+        <!-- email summernote init -->
+        <script src="/static/js/pages/email-summernote.init.js"></script>
+
+        <script src="/static/js/app.js"></script>
+    </body>
+</html>
