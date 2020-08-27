@@ -26,6 +26,67 @@
             </div>     
             <!-- end page title -->
 
+            <div class="row">
+                            <div class="col-12">
+                                <!-- Left sidebar -->
+                                <div class="email-leftbar card">
+                                    <!-- <button type="button" class="btn btn-danger btn-block waves-effect waves-light" data-toggle="modal" data-target="#composemodal">
+                                        Compose
+                                    </button> -->
+
+                                    <h6 class="mt-4">Message Will be sent to:</h6>
+
+                                    {% for user in users %}
+
+                                    <div class="mt-2">
+                                        <a href="#" class="media">
+                                            <img class="d-flex mr-3 rounded-circle" src="{{ user.photo.url }}" alt="Generic placeholder image" width="36" height="36">
+                                            <div class="media-body chat-user-box">
+                                                <p class="user-title m-0">{{ user.first_name }} {{ user.last_name }}</p>
+                                                <p class="text-muted">{{ user.email }}</p>
+                                            </div>
+                                        </a>
+
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <!-- End Left sidebar -->
+
+                                <!-- Right Sidebar -->
+                                <div class="email-rightbar mb-3">
+                                    <form method="POST" action="">
+                                        {% csrf_token %}
+                                        {% if error %}
+                                        <div class="alert alert-warning text-center">{{ error }}</div>
+                                        {% elif message %}
+                                        <div class="alert alert-danger text-center">{{ message }}</div>
+                                        {% elif success %}
+                                        <div class="alert alert-success text-center">{{ success }}</div>
+                                        {% endif %}
+                                    <div class="card">
+                                        <div class="btn-toolbar p-3">
+                                            <div class="btn-group btn-block waves-effect waves-light form-group mr-2 mb-5 mb-sm-0">
+                                                <input type="text" name="subject" placeholder="Subject" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <textarea name="content" class="summernote">
+                                                <h6>Your Message Here...</h6>
+                                            </textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-info mr-2 mb-sm-0 waves-effect mt-4">Send</button>
+
+                                    </div>
+                                    </form>
+                                </div>
+                                <!-- card -->
+
+                            </div>
+                            <!-- end Col-9 -->
+
+                        </div>
+
             
         </div> <!-- container-fluid -->
     </div>

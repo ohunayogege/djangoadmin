@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
         <meta charset="utf-8" />
-        <title>{% block title %}Login | Skote - Responsive Bootstrap 4 Admin Dashboard{% endblock %}</title>
+        <title>{% block title %}Login | Django Admin Dashboard{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-        <meta content="Themesbrand" name="author" />
+        <meta content="Ohunayo Gege" name="author" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="/static/images/favicon.ico">
 
@@ -32,7 +32,11 @@
                                     <div class="col-7">
                                         <div class="text-primary p-4">
                                             <h5 class="text-primary">Welcome Back !</h5>
-                                            <p>Sign in to continue to Skote.</p>
+                                            {% if message %}
+                                            <p>{{ message }}</p>
+                                            {% else %}
+                                            <p>Sign in to continue to Dashboard.</p>
+                                            {% endif %}
                                         </div>
                                     </div>
                                     <div class="col-5 align-self-end">
@@ -42,7 +46,7 @@
                             </div>
                             <div class="card-body pt-0"> 
                                 <div>
-                                    <a href="index-2.html">
+                                    <a href="{% url 'index' %}">
                                         <div class="avatar-md profile-user-wid mb-4">
                                             <span class="avatar-title rounded-circle bg-light">
                                                 <img src="/static/images/logo.svg" alt="" class="rounded-circle" height="34">
@@ -51,12 +55,12 @@
                                     </a>
                                 </div>
                                 <div class="p-2">
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal" method="POST">
                                         {% csrf_token %}
         
                                         <div class="form-group">
-                                            <label for="username">Username</label>
-                                            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+                                            <label for="username">Email</label>
+                                            <input type="text" class="form-control" id="username" name="email" placeholder="Enter Email">
                                         </div>
                 
                                         <div class="form-group">
@@ -69,7 +73,7 @@
                                         </div>
             
                                         <div class="mt-4 text-center">
-                                            <a href="auth-recoverpw.html" class="text-muted"><i class="mdi mdi-lock mr-1"></i> Forgot your password?</a>
+                                            <!-- <a href="auth-recoverpw.html" class="text-muted"><i class="mdi mdi-lock mr-1"></i> Forgot your password?</a> -->
                                         </div>
                                     </form>
                                 </div>
@@ -77,7 +81,7 @@
                             </div>
                         </div>
                         <div class="mt-5 text-center">
-                            <p>Don't have an account? <a href="auth-register.html" class="font-weight-medium text-primary"> Signup now </a> </p>
+                            <!-- <p>Don't have an account? <a href="auth-register.html" class="font-weight-medium text-primary"> Signup now </a> </p> -->
                             <p>© 2020 Prudent Core NG. Crafted with <i class="mdi mdi-heart text-danger"></i> by Ohunayo Gege</p>
                         </div>
 

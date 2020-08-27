@@ -57,7 +57,7 @@ def reg_user_last_24(request):
 	# print(user)
 	current_date = datetime.date.today()
 	tdate = current_date
-	yesterday = tdate - datetime.timedelta(tdate.weekday())
+	yesterday = tdate - datetime.timedelta(hours=24)
 	# yesterday = current_week + datetime.timedelta(1)
 	# yesterday = today
 
@@ -81,8 +81,8 @@ def reg_user_last_week(request):
 	# print(user)
 	current_date = datetime.date.today()
 	tdate = current_date
-	current_week = tdate - datetime.timedelta(tdate.weekday())
-	last_week = current_week - datetime.timedelta(6)
+	# current_week = tdate - datetime.timedelta(tdate.weekday())
+	last_week = tdate - datetime.timedelta(weeks=1)
 
 	reg_user_lastweek = User.objects.all().exclude(joined_date__lt=last_week).filter(joined_date__gte=last_week)
 	page = request.GET.get('page', 1)
@@ -104,10 +104,9 @@ def reg_user_last_month(request):
 	# print(user)
 	current_date = datetime.date.today()
 	tdate = current_date
-	current_month = tdate - datetime.timedelta(tdate.weekday())
-	last_month = current_month - datetime.timedelta(27)
-	# yesterday = today
-	print(last_month)
+	# current_month = tdate - datetime.timedelta(tdate.weekday())
+	last_month = tdate - datetime.timedelta(weeks=4)
+	print("Hey::::  ", last_month)
 
 	reg_user_lastmonth = User.objects.all().exclude(joined_date__lt=last_month).filter(joined_date__gte=last_month)
 	page = request.GET.get('page', 1)
@@ -139,3 +138,21 @@ def all_users(request):
     return {
         'all_users': all_users,
     }
+
+# def logins(request):
+# 	if request.user.is_authenticated:
+# 		user = request.user
+# 		logins = LoginCount.objects.all().filter(log_user=request.user)
+# 		page = request.GET.get('page', 1)
+# 		paginator = Paginator(logins, 5)
+
+# 		try:
+# 		    logins = paginator.page(page)
+# 		except PageNotAnInteger:
+# 		    logins = paginator.page(1)
+# 		except EmptyPage:
+# 		    logins = paginator.page(paginator.num_pages)
+
+# 		return {
+# 		    'logins': logins,
+# 		}

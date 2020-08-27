@@ -67,6 +67,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'dashboard.context_processor.users',
+                # 'dashboard.context_processor.logins',
                 'dashboard.context_processor.all_users',
                 'dashboard.context_processor.admins',
                 'dashboard.context_processor.staffs',
@@ -114,6 +115,13 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST_USER = "postmaster@sandboxc9029be1cd1645d79038fe0d7b3b727e.mailgun.org"
+EMAIL_HOST_PASSWORD = '322cc38db915f72295f86e50ccec69be-4d640632-c9fe2243'
+EMAIL_PORT = 587
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -129,10 +137,10 @@ USE_TZ = False
 
 AUTH_USER_MODEL = 'dashboard.User'
 
-LOGIN_URL = '/login/'
+LOGIN_URL = 'login'
 #LOGIN_REDIRECT_URL  = 'login_success'
 
-LOGOUT_REDIRECT_URL = '/index/'
+LOGOUT_REDIRECT_URL = 'index'
 
 
 # Static files (CSS, JavaScript, Images)

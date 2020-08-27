@@ -65,33 +65,11 @@
                                         </div>
                                     </div>
                                     <div class="mt-4">
-                                        <a href="#" class="btn btn-primary waves-effect waves-light btn-sm">View Profile <i class="mdi mdi-arrow-right ml-1"></i></a>
+                                        <a href="{% url 'profile' user.username %}" class="btn btn-primary waves-effect waves-light btn-sm">View Profile <i class="mdi mdi-arrow-right ml-1"></i></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title mb-4">Monthly Earning</h4>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <p class="text-muted">This month</p>
-                                <h3>$34,252</h3>
-                                <p class="text-muted"><span class="text-success mr-2"> 12% <i class="mdi mdi-arrow-up"></i> </span> From previous period</p>
-
-                                <div class="mt-4">
-                                    <a href="#" class="btn btn-primary waves-effect waves-light btn-sm">View More <i class="mdi mdi-arrow-right ml-1"></i></a>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="mt-4 mt-sm-0">
-                                    <div id="radialBar-chart" class="apex-charts"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-muted mb-0">We craft digital, graphic and dimensional thinking.</p>
                     </div>
                 </div>
             </div>
@@ -103,7 +81,7 @@
                                 <div class="media">
                                     <div class="media-body">
                                         <p class="text-muted font-weight-medium">Total Users</p>
-                                        <h4 class="mb-0">1,235</h4>
+                                        <h4 class="mb-0">{{ user_count }}</h4>
                                     </div>
 
                                     <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
@@ -121,7 +99,7 @@
                                 <div class="media">
                                     <div class="media-body">
                                         <p class="text-muted font-weight-medium">Total Staffs</p>
-                                        <h4 class="mb-0">$35, 723</h4>
+                                        <h4 class="mb-0">{{ staff_count }}</h4>
                                     </div>
 
                                     <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
@@ -139,7 +117,7 @@
                                 <div class="media">
                                     <div class="media-body">
                                         <p class="text-muted font-weight-medium">Total Normal Users</p>
-                                        <h4 class="mb-0">$16.2</h4>
+                                        <h4 class="mb-0">{{ nuser_count }}</h4>
                                     </div>
 
                                     <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
@@ -163,153 +141,38 @@
                                         <thead class="thead-light">
                                             <tr>
                                                 <th scope="col" style="width: 70px;">#</th>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Email</th>
-                                                <th scope="col">Date Joined</th>
-                                                <th scope="col">Status</th>
-                                                <th scope="col">View Profile</th>
+                                                <th scope="col">Browser</th>
+                                                <th scope="col">IP Address</th>
+                                                <th scope="col">Date Logged in</th>
+                                                <th scope="col">Time Logged In</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            {% for login in logins %}
                                             <tr>
                                                 <td>
                                                     <div class="avatar-xs">
                                                         <span class="avatar-title rounded-circle">
-                                                            D
+                                                            {{ login.id }}
                                                         </span>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <h5 class="font-size-14 mb-1"><a href="#" class="text-dark">David McHenry</a></h5>
+                                                    <h5 class="font-size-14 mb-1 text-truncate"><a href="#" class="text-dark">{{ login.browser|truncatechars:9 }}</a></h5>
                                                     <p class="text-muted mb-0">UI/UX Designer</p>
                                                 </td>
-                                                <td>david@skote.com</td>
+                                                <td>{{ login.ip_address }}</td>
                                                 <td>
                                                     <div>
-                                                        <a href="#" class="badge badge-soft-primary font-size-11 m-1">Photoshop</a>
+                                                        <a class="badge badge-soft-primary font-size-11 m-1">{{ login.date_sent }}</a>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    125
-                                                </td>
-                                                <td>
-                                                    <ul class="list-inline font-size-20 contact-links mb-0">
-                                                        <li class="list-inline-item px-2">
-                                                            <a href="#" data-toggle="tooltip" data-placement="top" title="Profile"><i class="bx bx-user-circle"></i></a>
-                                                        </li>
-                                                    </ul>
+                                                    <a class="badge badge-soft-primary font-size-11 m-1">{{ login.time_sent }}</a>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <div>
-                                                        <img class="rounded-circle avatar-xs" src="assets/images/users/avatar-2.jpg" alt="">
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <h5 class="font-size-14 mb-1"><a href="#" class="text-dark">Frank Kirk</a></h5>
-                                                    <p class="text-muted mb-0">Frontend Developer</p>
-                                                </td>
-                                                <td>frank@skote.com</td>
-                                                <td>
-                                                    <div>
-                                                        <a href="#" class="badge badge-soft-primary font-size-11 m-1">Html</a>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    132
-                                                </td>
-                                                <td>
-                                                    <ul class="list-inline font-size-20 contact-links mb-0">
-                                                        <li class="list-inline-item px-2">
-                                                            <a href="#" data-toggle="tooltip" data-placement="top" title="Profile"><i class="bx bx-user-circle"></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div>
-                                                        <img class="rounded-circle avatar-xs" src="assets/images/users/avatar-3.jpg" alt="">
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <h5 class="font-size-14 mb-1"><a href="#" class="text-dark">Rafael Morales</a></h5>
-                                                    <p class="text-muted mb-0">Backend Developer</p>
-                                                </td>
-                                                <td>Rafael@skote.com</td>
-                                                <td>
-                                                    <div>
-                                                        <a href="#" class="badge badge-soft-primary font-size-11 m-1">Php</a>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    112
-                                                </td>
-                                                <td>
-                                                    <ul class="list-inline font-size-20 contact-links mb-0">
-                                                        <li class="list-inline-item px-2">
-                                                            <a href="#" data-toggle="tooltip" data-placement="top" title="Profile"><i class="bx bx-user-circle"></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="avatar-xs">
-                                                        <span class="avatar-title rounded-circle">
-                                                            M
-                                                        </span>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <h5 class="font-size-14 mb-1"><a href="#" class="text-dark">Mark Ellison</a></h5>
-                                                    <p class="text-muted mb-0">Full Stack Developer</p>
-                                                </td>
-                                                <td>mark@skote.com</td>
-                                                <td>
-                                                    <div>
-                                                        <a href="#" class="badge badge-soft-primary font-size-11 m-1">Ruby</a>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    121
-                                                </td>
-                                                <td>
-                                                    <ul class="list-inline font-size-20 contact-links mb-0">
-                                                        <li class="list-inline-item px-2">
-                                                            <a href="#" data-toggle="tooltip" data-placement="top" title="Profile"><i class="bx bx-user-circle"></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div>
-                                                        <img class="rounded-circle avatar-xs" src="assets/images/users/avatar-4.jpg" alt="">
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <h5 class="font-size-14 mb-1"><a href="#" class="text-dark">Minnie Walter</a></h5>
-                                                    <p class="text-muted mb-0">Frontend Developer</p>
-                                                </td>
-                                                <td>minnie@skote.com</td>
-                                                <td>
-                                                    <div>
-                                                        <a href="#" class="badge badge-soft-primary font-size-11 m-1">Html</a>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    145
-                                                </td>
-                                                <td>
-                                                    <ul class="list-inline font-size-20 contact-links mb-0">
-                                                        <li class="list-inline-item px-2">
-                                                            <a href="#" data-toggle="tooltip" data-placement="top" title="Profile"><i class="bx bx-user-circle"></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
+                                            {% endfor %}
+
                                         </tbody>
                                     </table>
                                 </div>
